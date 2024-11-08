@@ -1,14 +1,14 @@
 import struct
 
 
-def to_b(n):
+def to_bin(n):
     x = struct.pack(">d", n)
     # bin = "".join(f"{byte:08b}" for byte in x)
     return "".join(f"{byte:08b}" for byte in x)
     # return x.hex()
 
 
-def to_h(n):
+def to_hex(n):
     x = struct.pack(">d", n)
     return x.hex()
 
@@ -18,17 +18,15 @@ def to_dec(s):
     return struct.unpack(">d", p)[0] * 2
 
 
-a = -15.5
-b = 6.2
+a = 5.69
+b = 10.256
 
 print("Verilog command: ")
-print("    initial begin")
-print(f"        #10 assign a = 64'b{to_b(a)};")
-print(f"            assign b = 64'b{to_b(b)};")
-print("    end")
+print(f"\tassign a = 64'b{to_bin(a)};")
+print(f"\tassign b = 64'b{to_bin(b)};")
 
-print(f"a: {to_h(a)}")
-print(f"b: {to_h(b)}")
+print(f"a: {to_hex(a)}")
+print(f"b: {to_hex(b)}")
 
 res = input("Enter result: ")
 

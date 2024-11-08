@@ -1,0 +1,21 @@
+**** module/scope: fp_class
+     Flip-Flops   : 0
+     Logic Gates  : 1653
+     EQUALITY[53]: 6 units
+     MUX[2]: 205 slices
+     LPM[6]: 12 unaccounted
+     LPM[8]: 8 unaccounted
+     LOG[13]: 1 unaccounted
+     LOG[14]: 1 unaccounted
+**** module/scope: fp_class.$ivl_for_loop0
+     Flip-Flops   : 0
+     Logic Gates  : 0
+**** TOTALS
+     Flip-Flops   : 0
+     Logic Gates  : 1653
+     EQUALITY[53]: 6 units
+     MUX[2]: 205 slices
+     LPM[6]: 12 unaccounted
+     LPM[8]: 8 unaccounted
+     LOG[13]: 1 unaccounted
+     LOG[14]: 1 unaccounted
