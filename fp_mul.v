@@ -5,12 +5,19 @@ module fp_mul (
     p, nan, inf, zero, dnorm, norm, // output
     a, b // input 
 );
+    // parameter N_EXP     = 11;
+	// parameter N_MAN     = 52;
+	// parameter BIAS      = (1 << (N_EXP-1));
+	// parameter log_N_MAN = $clog2(N_MAN+1);
+	// parameter EMIN      = 1-BIAS;
+	// parameter EMAX      = BIAS;
+
     parameter N_EXP     = 11;
 	parameter N_MAN     = 52;
-	parameter bias      = 1 <<  (N_EXP-1);
+	parameter BIAS      = (1 << (N_EXP-1));
 	parameter log_N_MAN = $clog2(N_MAN+1);
-	parameter EMIN      = 1-bias;
-	parameter EMAX      = bias;
+	parameter EMIN      = 1-BIAS;
+	parameter EMAX      = BIAS;
 
     output  [N_EXP+N_MAN : 0]   p;
     output reg                  nan, inf, zero, dnorm, norm;
@@ -92,14 +99,14 @@ module fp_mul (
             else if(t2exp < EMIN) begin // dnorm
                 pman = tman >> (EMIN - t2exp);
                 pt = {ps, {N_EXP{1'b0}}, pman[N_MAN-1 : 0]};
-                inf = 1;
+                inf = 1'b1;
             end
             else if(t2exp > EMAX) begin // inf
                 pt = {ps, {N_EXP{1'b1}}, {N_MAN{1'b0}}};
-                inf = 1;
+                inf = 1'b1;
             end
             else begin // norm
-                pexp = t2exp + bias;
+                pexp = t2exp + BIAS;
                 pman = tman;
                 pt = {ps, pexp[N_EXP-1 : 0], pman[N_MAN-1 : 0]};
                 norm = 1'b1;

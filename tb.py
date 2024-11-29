@@ -18,7 +18,7 @@ def to_dec(s):
     return struct.unpack(">d", p)[0] * 2
 
 
-a = 5.69
+a = 50.69
 b = 10.256
 
 print("Verilog command: ")

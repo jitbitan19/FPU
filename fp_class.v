@@ -4,9 +4,16 @@ module fp_class(
 	exp, man, nan, inf, zero, dnorm, norm, // output
 	f // input
 );
+	// parameter N_EXP 	= 11;
+	// parameter N_MAN 	= 52;
+	// parameter BIAS 		= (1 << (N_EXP-1));
+	// parameter log_N_MAN = $clog2(N_MAN+1);
+	// parameter EMIN 		= (1-BIAS);
+	// parameter EMAX 		= BIAS;
+
 	parameter N_EXP 	= 11;
 	parameter N_MAN 	= 52;
-	parameter BIAS 		= 1 << (N_EXP-1);
+	parameter BIAS 		= (1 << (N_EXP-1));
 	parameter log_N_MAN = $clog2(N_MAN+1);
 	parameter EMIN 		= (1-BIAS);
 	parameter EMAX 		= BIAS;

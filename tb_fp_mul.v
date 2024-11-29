@@ -3,11 +3,11 @@
 
 module tb_fp_mul;
 
-    parameter NEXP = 11;
-    parameter NSIG = 52;
+    parameter N_EXP = 11;
+    parameter N_MAN = 52;
 
-    reg  [NEXP+NSIG : 0]    a, b;
-    wire [NEXP+NSIG : 0]    p;
+    reg  [N_EXP+N_MAN : 0]    a, b;
+    wire [N_EXP+N_MAN : 0]    p;
     wire                    pnan, pinf, pzero, pdnorm, pnorm;
 
     initial #100 $finish;
@@ -19,11 +19,11 @@ module tb_fp_mul;
     // end
 
     initial begin
-        assign a = {1'b0, {NEXP{1'b0}}, {NSIG{1'b1}}};
+        assign a = {1'b0, {N_EXP{1'b0}}, {N_MAN{1'b1}}};
         assign b = {64{1'b0}};
 
         #10
-        assign a = 64'b0100000000010110110000101000111101011100001010001111010111000011;
+        assign a = 64'b0100000001001001010110000101000111101011100001010001111010111000;
         assign b = 64'b0100000000100100100000110001001001101110100101111000110101010000;
     end
 
@@ -33,7 +33,7 @@ module tb_fp_mul;
         $dumpvars (0, tb_fp_mul);
     end
 
-    fp_mul # (NEXP, NSIG) u (
+    fp_mul # (N_EXP, N_MAN) u (
         .a      (a),
         .b      (b),
         .p      (p),
